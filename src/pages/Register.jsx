@@ -1,16 +1,70 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {toast } from 'react-toastify'
+
+
 
 const Register = () => {
   const[id, idchange] = useState("");
   const[email, emailchange] = useState("");
   const[password, passwordchange] = useState("");
+  const config= {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    }
+    const navigate=useNavigate();
+    const IsValidate=() =>{
+      let isproceed=true;
+      let errormessage="Please enter the value in "
+      if (id === null || id ===''){
+        isproceed=false;
+        errormessage += 'Username'
+      }
+      if (email === null || email ===''){
+        isproceed=false;
+        errormessage += ' Email'
+      }
+      if (password === null || password ===''){
+        isproceed=false;
+        errormessage += ' Password'
+      }
+      if((password.length) < 7){
+        isproceed=false;
+        toast.warning("Password is Short")
+      }
+      if (password === id){
+        isproceed=false;
+        toast.warning("Password can't be Same as Username")
+      }
+      
+      if (!isproceed)
+      {
+        toast.warning(errormessage)
+      }
+  
+      if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            isproceed = false;
+            toast.warning('Please enter the valid email')
+        }
+      if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)){
+          isproceed=false;
+          toast.warning("Password is too weak")
+        }
+      return isproceed;
+    }
   const handlesubmit  = async (e) => {
+    if(IsValidate()){
+
+    
     e.preventDefault();
-    console.log("hello")
     let regobj={id,email,password};
-    // console.log(regobj)
+
    const response =  await fetch("http://localhost:8000/users", {
     method:"POST",
     headers:{'content-type':'application/json'},
@@ -18,9 +72,18 @@ const Register = () => {
   }
 
   );
-  
-  console.log(response)
+
+  if(response.ok){
+      
+    toast.success("Registered sucessfully",config)
+    navigate('/Login');
   }
+  else{
+    
+    toast.error("Failed to Register",config)
+  }
+  }
+}
 
   return (
     <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none bg-white items-center justify-center  w-[500px] m-auto mt-20">

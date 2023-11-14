@@ -8,12 +8,17 @@ import {BrowserRouter,Route, Routes,} from "react-router-dom"
 import Register from './pages/Register';
 import LogIn from './pages/Login';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
+
+
 
 function App() {
+  
   return (
  
   <BrowserRouter>
    <Navbar />
+  
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,8 +29,10 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/LogIn" element={<LogIn />} />
       </Routes>
+      <Profile />
       </BrowserRouter>
-   
+  
+
   );
 }
 
