@@ -48,11 +48,11 @@ const Register = () => {
         toast.warning(errormessage)
       }
   
-      if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             isproceed = false;
             toast.warning('Please enter the valid email')
         }
-      if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)){
+      if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(password)){
           isproceed=false;
           toast.warning("Password is too weak")
         }
@@ -105,7 +105,7 @@ const Register = () => {
           </label>
         </div>
         <div className="relative h-11 w-full min-w-[200px]">
-          <input value={email} onChange={(e)=>emailchange(e.target.value)} type="email"
+          <input value={email} onChange={(e)=>emailchange(e.target.value)}type='text'
             className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             placeholder=" "
           />
@@ -114,7 +114,7 @@ const Register = () => {
           </label>
         </div>
         <div className="relative h-11 w-full min-w-[200px]">
-          <input value={password} onChange={(e)=>passwordchange(e.target.value)} type="password"
+          <input value={password} onChange={(e)=>passwordchange(e.target.value)} type="text"
            
             className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             placeholder=" "

@@ -28,8 +28,9 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
-      <Profile />
+     
       </BrowserRouter>
   
 
