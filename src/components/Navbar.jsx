@@ -12,11 +12,7 @@ const Navbar = () => {
     }
   }
   const location = useLocation().pathname
-  const [selectedValue, setSelectedValue] = useState('');
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
 
 
   return (
@@ -32,17 +28,15 @@ const Navbar = () => {
       { location==="/Profile"?
         <Link to='/Profile' ><FormControl>
       <Select
-        value={selectedValue}
-        onChange={handleChange}
         displayEmpty
         inputProps={{ 'aria-label': 'Select' }}
       >
-        <MenuItem value="" disabled className='bg-orange-200 text-amber-400'>
+        <MenuItem disabled className='bg-orange-200 text-amber-400'>
         PROFILE
         </MenuItem>
-        <MenuItem value="option1">Account</MenuItem>
-        <MenuItem value="option2">Setting</MenuItem>
-        <MenuItem value="option3">Log-Out</MenuItem>
+        <MenuItem >Account</MenuItem>
+        <MenuItem >Setting</MenuItem>
+        <MenuItem > <Link to={'/'}>Log-Out</Link></MenuItem>
       </Select>
     </FormControl> </Link>
       :
